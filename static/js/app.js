@@ -3,7 +3,6 @@ var record = document.querySelector('.record');
 var stop = document.querySelector('.stop');
 var send = document.querySelector('.send');
 var msg_content = document.querySelector('.content');
-var chunks = [];
 
 // 初始化按钮状态
 stop.disabled = true;
@@ -11,6 +10,7 @@ stop.disabled = true;
 // 设置websocket服务器地址
 const wsUrl = 'ws://localhost:8000/';
 const ws = new WebSocket(wsUrl);
+ws.binaryType = "arraybuffer";
 
 // Websocket钩子方法
 ws.onopen = function(evt) {
@@ -22,17 +22,17 @@ ws.onerror = function(err) {
 }
 
 ws.onmessage = function(evt) {
-    console.log('ws onmessage() data:', evt.data);
+  console.log('ws onmessage() data:', typeof(evt.data));
 
-    // 接收Blob对象
-    var blob = new Blob(evt.data, { 'type' : 'audio/ogg; codecs=opus' });
+    // 创建Blob对象
+    var blob_obj = new Blob([evt.data], { 'type': 'audio/ogg; codecs=opus' })
 
     // 添加audio元素
     var audio = document.createElement('audio');
     audio.setAttribute('controls', '');
-    msg_content.appendChild(audio);
     audio.controls = true;
-    audio.src = window.URL.createObjectURL(blob);
+    audio.src = window.URL.createObjectURL(blob_obj);
+    msg_content.appendChild(audio);
 }
 
 
@@ -40,6 +40,7 @@ if (navigator.mediaDevices.getUserMedia) {
   console.log('getUserMedia supported.');
 
   var constraints = { audio: true };
+  var chunks = [];
 
   var onSuccess = function(stream) {
     var mediaRecorder = new MediaRecorder(stream);
@@ -67,10 +68,13 @@ if (navigator.mediaDevices.getUserMedia) {
 
       // 保存录音
       var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
-      chunks = [];
 
       // 发送录音
-      ws.send(blob);
+      ws.send(blob)
+      
+      
+      // 重置录音数据
+      chunks = [];
 
       console.log("recorder stopped"); 
     }

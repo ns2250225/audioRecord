@@ -13,7 +13,7 @@ class webRTCServer(tornado.websocket.WebSocketHandler):
     def on_message(self, message):
         # 接收到消息时进行广
         for user in self.users: 
-            user.write_message(message)
+            user.write_message(message, binary=True)
 
     def on_close(self):
         # 链接断开时移除用户
