@@ -1,5 +1,6 @@
 # audioRecord
 - 仿微信的语音段传输v1.0
+- 使用webRTC(获取和录制音频)和webSocket（发送音频流）
 
 # 启动
 - pip install tornado
