@@ -1,6 +1,11 @@
 # audioRecord
 - 仿微信的语音段传输v1.0
-- 使用webRTC(获取和录制音频)和webSocket（发送音频流）
+- 旨在做一个PWA版的微信
+- 使用 webRTC(获取和录制音频)和 webSocket（发送音频流）
+
+# ToDo
+- 用vue-pwa框架搭建项目
+- 集成vux UI框架
 
 # 启动
 - pip install tornado
