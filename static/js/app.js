@@ -45,7 +45,7 @@ ws.onmessage = function(evt) {
       setTimeout(() => {
         dtime = audio.duration;
         tmp_span.innerHTML = dtime + '"';
-      }, 10);
+      }, 100);
     };
     tmp_btn.onclick = function () {
       if (audio.paused) {
