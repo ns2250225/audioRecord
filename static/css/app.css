@@ -41,6 +41,10 @@ html, body {
     border: none;
 }
 
+.play_btn:hover {
+    background-color: aliceblue;
+}
+
 .audio_time {
     font-size: 18px;
     font-family: 'Microsoft YaHei';
