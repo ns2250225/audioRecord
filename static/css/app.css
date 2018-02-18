@@ -22,3 +22,30 @@ html, body {
     margin-top: 30px;
 }
 
+.myAudio {
+    height: 50px;
+    width: 200px;
+    background-color: chartreuse;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-left: 10px;
+    box-shadow:2px 2px 5px #333333;
+}
+
+.play_btn {
+    width: 25px;
+    height: 25px;
+    margin-top: 10px;
+    margin-left: 20px;
+    border: none;
+}
+
+.audio_time {
+    font-size: 18px;
+    font-family: 'Microsoft YaHei';
+    font-weight: bold;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}

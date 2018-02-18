@@ -3,6 +3,7 @@ var record = document.querySelector('.record');
 var stop = document.querySelector('.stop');
 var send = document.querySelector('.send');
 var msg_content = document.querySelector('.content');
+var audio = null
 
 // 初始化按钮状态
 stop.disabled = true;
@@ -28,11 +29,35 @@ ws.onmessage = function(evt) {
     var blob_obj = new Blob([evt.data], { 'type': 'audio/ogg; codecs=opus' })
 
     // 添加audio元素
-    var audio = document.createElement('audio');
-    audio.setAttribute('controls', '');
-    audio.controls = true;
+    var tmp_div = document.createElement('div');
+    audio = document.createElement('audio');
+    var tmp_span = document.createElement('span');
+    var tmp_btn = document.createElement('img');
+   
+    tmp_div.setAttribute('class', 'myAudio');
+    tmp_span.setAttribute('class', 'audio_time');
+    tmp_btn.setAttribute('class', 'play_btn');
+    tmp_btn.src = "/static/images/audio-high.png"
+    audio.setAttribute('id', 'myAudio');
     audio.src = window.URL.createObjectURL(blob_obj);
-    msg_content.appendChild(audio);
+    audio.onloadedmetadata = function () {
+      var dtime = 0;
+      setTimeout(() => {
+        dtime = audio.duration;
+        tmp_span.innerHTML = dtime + '"';
+      }, 10);
+    };
+    tmp_btn.onclick = function () {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+    tmp_div.appendChild(audio);
+    tmp_div.appendChild(tmp_btn);
+    tmp_div.appendChild(tmp_span);
+    msg_content.appendChild(tmp_div);
 }
 
 

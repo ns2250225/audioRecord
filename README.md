@@ -10,6 +10,7 @@
 # 启动
 - pip install tornado
 - python server.py
+- 启动nginx或caddy服务器
 - 一个浏览器打开index.html
 - 另一个浏览器打开index.html
 - 开始录音，停止自动发送
