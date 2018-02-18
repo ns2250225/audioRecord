@@ -3,10 +3,17 @@ var record = document.querySelector('.record');
 var stop = document.querySelector('.stop');
 var send = document.querySelector('.send');
 var msg_content = document.querySelector('.content');
-var audio = null
 
 // 初始化按钮状态
 stop.disabled = true;
+
+// 注册PWA服务
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/static/js/sw.js')
+    .then(function () {
+      console.log('SW registered');
+    });
+}
 
 // 设置websocket服务器地址
 const wsUrl = 'ws://localhost:8000/';
@@ -30,7 +37,7 @@ ws.onmessage = function(evt) {
 
     // 添加audio元素
     var tmp_div = document.createElement('div');
-    audio = document.createElement('audio');
+    var audio = document.createElement('audio');
     var tmp_span = document.createElement('span');
     var tmp_btn = document.createElement('img');
    

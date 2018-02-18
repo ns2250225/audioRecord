@@ -1,0 +1,16 @@
+{
+  "name": "A basic Progressive Web App",
+  "short_name": "weChat",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ccc",
+  "theme_color": "#5FAAE5",
+  "icons": [
+    {
+      "src": "/static/icons/wechat.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ]
+}
