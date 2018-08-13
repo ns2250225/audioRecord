@@ -1,6 +1,5 @@
 # audioRecord
 - 仿微信的语音段传输v1.0
-- 旨在做一个PWA版的微信
 - 使用 webRTC(获取和录制音频)和 webSocket（发送音频流）
 
 # ToDo
